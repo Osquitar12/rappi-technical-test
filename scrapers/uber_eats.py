@@ -1,283 +1,507 @@
-"""
-Scraper Uber Eats México – McDonald's más cercano
-=================================================
-Uso:
-  python ubereats_mcdonalds.py --lat 19.4326 --lon -99.1332
+from playwright.sync_api import sync_playwright
+import pandas as pd
+import json
 
-Cómo obtener tus cookies:
-  1. Abre https://www.ubereats.com/mx en Chrome/Firefox
-  2. Inicia sesión (o entra como invitado)
-  3. Abre DevTools → Application → Cookies → www.ubereats.com
-  4. Copia los valores de  "sid"  y  "csid"  y pégalos abajo
-"""
-
-import argparse, json, math, time, sys
-import requests
-
-# ══════════════════════════════════════════════════════════════
-#  ▶  PON AQUÍ TUS COOKIES (se obtienen del navegador)
-# ══════════════════════════════════════════════════════════════
-MY_COOKIES = {
-    # Ejemplo:
-   "sid":"g.a000-gi-FBXgaG_ZK1Gwl3fB4CI-eNXWBryaRe_PkMfWRAAp-SOJErmh,FzZ4cYc41snzcPC0JAACgYKAdESARQSFQHGX2MiWxeeS3kgxq1ncD1CvqTGvhoVAUF8yKpTln41rFhmhrqXeq13Iys70076",
-    "csid":"1781524275975::fOLYfZu8WbmvgjGIRm8C.6.1781524283528.0::1.2336.0::0.0.0.0::0.0.0"# "csid": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-}
-# ══════════════════════════════════════════════════════════════
+DIRECCION = "C. Tlaxcoaque, Centro, Cuauhtémoc, 06080 Ciudad de México, CDMX, México"
 
 
-HEADERS = {
-    "User-Agent": (
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-        "AppleWebKit/537.36 (KHTML, like Gecko) "
-        "Chrome/124.0.0.0 Safari/537.36"
-    ),
-    "Accept":           "application/json, text/plain, */*",
-    "Accept-Language":  "es-MX,es;q=0.9,en;q=0.8",
-    "Content-Type":     "application/json",
-    "Origin":           "https://www.ubereats.com",
-    "Referer":          "https://www.ubereats.com/mx",
-    "x-csrf-token":     "x",
-}
+def load_full_menu(page):
 
-BASE = "https://www.ubereats.com/api"
+    print("Cargando menú completo...")
 
+    previous = 0
 
-# ─────────────────────────────────────────────
-#  HELPERS
-# ─────────────────────────────────────────────
+    for _ in range(30):
 
-def haversine(lat1, lon1, lat2, lon2) -> float:
-    R = 6371
-    dlat = math.radians(lat2 - lat1)
-    dlon = math.radians(lon2 - lon1)
-    a = (math.sin(dlat/2)**2
-         + math.cos(math.radians(lat1))
-         * math.cos(math.radians(lat2))
-         * math.sin(dlon/2)**2)
-    return R * 2 * math.asin(math.sqrt(a))
+        page.mouse.wheel(0, 6000)
+        page.wait_for_timeout(2000)
+
+        current = page.locator(
+            '[data-testid^="store-item-"]'
+        ).count()
+
+        print(f"Productos visibles: {current}")
+
+        if current == previous:
+            break
+
+        previous = current
+
+    print("Menú cargado")
 
 
-def make_session() -> requests.Session:
-    s = requests.Session()
-    s.headers.update(HEADERS)
-    if MY_COOKIES:
-        s.cookies.update(MY_COOKIES)
-    return s
+def extract_store_info(page):
 
-
-# ─────────────────────────────────────────────
-#  1. BUSCAR McDONALD'S
-# ─────────────────────────────────────────────
-
-def search_mcdonalds(lat: float, lon: float, s: requests.Session) -> list[dict]:
-    url     = f"{BASE}/getFeedV1"
-    payload = {
-        "cacheKey":   "",
-        "feedVersion": "2",
-        "feedType":   "SEARCH",
-        "userQuery":  "McDonald's",
-        "locationType": "GEOGRAPHIC",
-        "longitude":  lon,
-        "latitude":   lat,
-        "pageInfo":   {"offset": 0, "pageSize": 30},
-        "marketingFeedType": "NONE",
-        "billboardUuid": "",
-        "targetLocation": {
-            "latitude":  lat,
-            "longitude": lon,
-            "reference":   "geo",
-            "referenceId": f"{lat},{lon}",
-            "type":        "geocode",
-        },
+    data = {
+        "restaurant": "",
+        "delivery_address": "",
+        "restaurant_address": "",
+        "eta": "",
+        "delivery_fee": ""
     }
 
-    print(f"\n🔍  Buscando McDonald's cerca de ({lat}, {lon}) …")
-    resp = s.post(url, json=payload, timeout=20)
+    try:
+        data["restaurant"] = (
+            page.locator("h1")
+            .first
+            .inner_text()
+            .strip()
+        )
+    except:
+        pass
 
-    if resp.status_code == 403:
-        print("\n⚠️   Uber Eats devolvió 403 – necesitas pegar tus cookies en MY_COOKIES.")
-        print("     Revisa las instrucciones al inicio del script.\n")
-        sys.exit(1)
+    try:
+        data["delivery_address"] = (
+            page.locator(
+                '[data-testid="delivery-address-label"]'
+            )
+            .inner_text()
+            .strip()
+        )
+    except:
+        pass
 
-    resp.raise_for_status()
-    data = resp.json()
-
-    stores = []
-    feed_items = (
-        data.get("data", {})
-            .get("feedItems", [])
+    spans = page.locator(
+        'span[data-testid="rich-text"]'
     )
 
-    for item in feed_items:
-        store = item.get("store", {})
-        if not store:
-            continue
-        title = (store.get("title") or {}).get("text", "")
-        if "mcdonald" not in title.lower():
-            continue
-        loc = store.get("location") or {}
-        stores.append({
-            "uuid":    store.get("storeUuid"),
-            "name":    title,
-            "lat":     loc.get("latitude"),
-            "lon":     loc.get("longitude"),
-            "address": (loc.get("address") or {}).get("address1", ""),
-            "rating":  store.get("rating", {}).get("ratingValue"),
+    total = spans.count()
+
+    for i in range(total):
+
+        try:
+
+            text = (
+                spans.nth(i)
+                .inner_text()
+                .strip()
+            )
+
+            if (
+                "min" in text
+                and not data["eta"]
+            ):
+                data["eta"] = text
+
+            if (
+                "Costo de envío" in text
+                and not data["delivery_fee"]
+            ):
+                data["delivery_fee"] = text
+
+            if (
+                "Ciudad De México" in text
+                and not data["restaurant_address"]
+            ):
+                data["restaurant_address"] = text
+
+        except:
+            pass
+
+    return data
+
+
+def extract_products(page):
+
+    print("Extrayendo productos...")
+
+    products = page.evaluate("""
+    () => {
+
+        const result = [];
+
+        const cards = document.querySelectorAll(
+            '[data-testid^="store-item-"]'
+        );
+
+        cards.forEach(card => {
+
+            const rawText =
+                card.innerText || "";
+
+            const lines = rawText
+                .split("\\n")
+                .map(x => x.trim())
+                .filter(Boolean);
+
+            if (lines.length === 0)
+                return;
+
+            let name = "";
+            let description = "";
+            let current_price = "";
+            let original_price = "";
+            let discount = "";
+
+            // ======================
+            // NOMBRE
+            // ======================
+
+            for (const line of lines) {
+
+                if (
+                    !line.startsWith("$") &&
+                    !line.includes("%")
+                ) {
+
+                    name = line;
+                    break;
+                }
+            }
+
+            // ======================
+            // DESCRIPCION
+            // ======================
+
+            const desc1 =
+                card.querySelector(
+                    "span._ys"
+                );
+
+            if (desc1) {
+
+                description =
+                    desc1.innerText.trim();
+
+            }
+
+            if (!description) {
+
+                const spans = [
+                    ...card.querySelectorAll(
+                        "span"
+                    )
+                ];
+
+                for (const span of spans) {
+
+                    const txt =
+                        span.innerText.trim();
+
+                    if (
+                        txt.length > 5 &&
+                        !txt.startsWith("$") &&
+                        !txt.includes("%") &&
+                        txt !== name
+                    ) {
+
+                        description = txt;
+                        break;
+                    }
+                }
+            }
+
+            if (!description) {
+
+                const elements = [
+                    ...card.querySelectorAll(
+                        "*"
+                    )
+                ];
+
+                for (const el of elements) {
+
+                    const txt =
+                        el.innerText?.trim();
+
+                    if (
+                        txt &&
+                        txt.length > 50 &&
+                        !txt.startsWith("$") &&
+                        !txt.includes("%") &&
+                        txt !== name
+                    ) {
+
+                        description = txt;
+                        break;
+                    }
+                }
+            }
+
+            // ======================
+            // PRECIOS
+            // ======================
+
+            const prices =
+                rawText.match(
+                    /\\$\\d+\\.\\d+/g
+                ) || [];
+
+            if (prices.length >= 2) {
+
+                current_price =
+                    prices[0];
+
+                original_price =
+                    prices[1];
+
+            }
+
+            else if (
+                prices.length === 1
+            ) {
+
+                current_price =
+                    prices[0];
+
+            }
+
+            // ======================
+            // DESCUENTO
+            // ======================
+
+            const discountMatch =
+                rawText.match(
+                    /-\\s*\\d+%/
+                );
+
+            if (discountMatch) {
+
+                discount =
+                    discountMatch[0];
+
+            }
+
+            // ======================
+            // LIMPIEZA
+            // ======================
+
+            if (
+                description === name
+            ) {
+
+                description = "";
+
+            }
+
+            result.push({
+
+                name:
+                    name,
+
+                description:
+                    description,
+
+                current_price:
+                    current_price,
+
+                original_price:
+                    original_price,
+
+                discount:
+                    discount
+
+            });
+
+        });
+
+        return result;
+
+    }
+    """)
+
+    print(
+        f"Productos extraídos: {len(products)}"
+    )
+
+    return products
+
+with sync_playwright() as p:
+
+    browser = p.chromium.launch(
+        headless=False,
+        slow_mo=500
+    )
+
+    context = browser.new_context(
+        viewport={
+            "width": 1600,
+            "height": 900
+        }
+    )
+
+    page = context.new_page()
+
+    print("Abriendo Uber Eats...")
+
+    page.goto(
+        "https://www.ubereats.com/mx",
+        wait_until="domcontentloaded",
+        timeout=60000
+    )
+
+    page.wait_for_timeout(5000)
+
+    direccion_input = page.locator(
+        "input"
+    ).first
+
+    direccion_input.click()
+
+    direccion_input.fill(
+        DIRECCION
+    )
+
+    page.wait_for_timeout(3000)
+
+    page.keyboard.press("ArrowDown")
+    page.keyboard.press("Enter")
+
+    print("Dirección seleccionada")
+
+    page.wait_for_timeout(5000)
+
+    buscador = page.locator(
+        "input[placeholder*='Buscar']"
+    ).first
+
+    buscador.click()
+
+    buscador.fill(
+        "McDonald's"
+    )
+
+    page.wait_for_timeout(3000)
+
+    page.keyboard.press("Enter")
+
+    print("Buscando McDonald's...")
+
+    page.wait_for_timeout(8000)
+
+    enlaces = page.locator("a")
+
+    total = enlaces.count()
+
+    found = False
+
+    for i in range(total):
+
+        try:
+
+            texto = enlaces.nth(i).inner_text(
+                timeout=500
+            )
+
+            if "McDonald" in texto:
+
+                print(
+                    "Entrando:",
+                    texto
+                )
+
+                enlaces.nth(i).click()
+
+                found = True
+
+                break
+
+        except:
+            pass
+
+    if not found:
+
+        print(
+            "No se encontró McDonald's"
+        )
+
+        browser.close()
+        raise SystemExit
+
+    page.wait_for_timeout(8000)
+
+    load_full_menu(page)
+
+    store_info = extract_store_info(
+        page
+    )
+
+    products = extract_products(
+        page
+    )
+
+    result = {
+        "platform": "Uber Eats",
+        "searched_address": DIRECCION,
+        **store_info,
+        "products": products
+    }
+
+    with open(
+        "ubereats_mcdonalds.json",
+        "w",
+        encoding="utf-8"
+    ) as f:
+
+        json.dump(
+            result,
+            f,
+            indent=2,
+            ensure_ascii=False
+        )
+
+    rows = []
+
+    for product in products:
+
+        rows.append({
+
+            "platform":
+                "Uber Eats",
+
+            "searched_address":
+                DIRECCION,
+
+            "restaurant":
+                store_info["restaurant"],
+
+            "restaurant_address":
+                store_info["restaurant_address"],
+
+            "delivery_address":
+                store_info["delivery_address"],
+
+            "eta":
+                store_info["eta"],
+
+            "delivery_fee":
+                store_info["delivery_fee"],
+
+            "product":
+                product["name"],
+
+            "description":
+                product["description"],
+
+            "current_price":
+                product["current_price"],
+
+            "original_price":
+                product["original_price"],
+
+            "discount":
+                product["discount"]
         })
 
-    return stores
+    df = pd.DataFrame(rows)
 
-
-# ─────────────────────────────────────────────
-#  2. EL MÁS CERCANO
-# ─────────────────────────────────────────────
-
-def closest(stores: list[dict], lat: float, lon: float) -> dict:
-    def dist(st):
-        if st["lat"] is None or st["lon"] is None:
-            return float("inf")
-        return haversine(lat, lon, st["lat"], st["lon"])
-    return min(stores, key=dist)
-
-
-# ─────────────────────────────────────────────
-#  3. MENÚ Y PRECIOS
-# ─────────────────────────────────────────────
-
-def get_menu(uuid: str, s: requests.Session) -> list[dict]:
-    url     = f"{BASE}/getStoreV1"
-    payload = {"storeUuid": uuid}
-
-    print(f"\n📋  Descargando menú …")
-    resp = s.post(url, json=payload, timeout=25)
-    resp.raise_for_status()
-    data = resp.json()
-
-    items = []
-    catalog_map = (
-        data.get("data", {})
-            .get("catalogSectionsMap", {})
+    df.to_excel(
+        "ubereats_mcdonalds.xlsx",
+        index=False
     )
 
-    for section_list in catalog_map.values():
-        for section in section_list:
-            cat = (section.get("title") or {}).get("text", "Sin categoría")
-            for raw in section.get("itemV2", []):
-                info  = raw.get("catalogItem", {})
-                title = info.get("title", "")
-                desc  = info.get("itemDescription", "")
-                price = info.get("price")           # centavos MXN
-                imgs  = info.get("imageUrls") or []
-                items.append({
-                    "category":    cat,
-                    "name":        title,
-                    "description": desc,
-                    "price_mxn":   round(price / 100, 2) if price else None,
-                    "image_url":   imgs[0] if imgs else "",
-                })
+    print()
+    print("=" * 50)
+    print("SCRAPING FINALIZADO")
+    print("=" * 50)
 
-    return items
+    print("Restaurante:", store_info["restaurant"])
+    print("ETA:", store_info["eta"])
+    print("Delivery Fee:", store_info["delivery_fee"])
+    print("Productos:", len(products))
 
+    print()
+    print("JSON: ubereats_mcdonalds.json")
+    print("Excel: ubereats_mcdonalds.xlsx")
 
-# ─────────────────────────────────────────────
-#  4. SALIDA EN CONSOLA
-# ─────────────────────────────────────────────
-
-def print_results(store: dict, menu: list[dict], user_lat: float, user_lon: float):
-    dist = haversine(user_lat, user_lon, store["lat"], store["lon"])
-    print("\n" + "═"*62)
-    print(f"  🍔  {store['name']}")
-    print(f"  📍  {store['address']}")
-    print(f"  🌐  Latitud  : {store['lat']}")
-    print(f"  🌐  Longitud : {store['lon']}")
-    print(f"  📏  Distancia: {dist:.2f} km")
-    if store.get("rating"):
-        print(f"  ⭐  Rating   : {store['rating']}")
-    print("═"*62)
-
-    if not menu:
-        print("  ⚠️   No se obtuvieron items del menú.")
-        return
-
-    cat_actual = None
-    for it in menu:
-        if it["category"] != cat_actual:
-            cat_actual = it["category"]
-            print(f"\n  ▸ {cat_actual}")
-        precio = (f"${it['price_mxn']:.2f} MXN"
-                  if it["price_mxn"] is not None else "—")
-        print(f"    • {it['name']:<42} {precio}")
-
-    print("\n" + "═"*62)
-    print(f"  Total de items: {len(menu)}")
-
-
-# ─────────────────────────────────────────────
-#  5. GUARDAR JSON
-# ─────────────────────────────────────────────
-
-def save_json(store: dict, menu: list[dict], user_lat: float, user_lon: float, path: str):
-    dist = haversine(user_lat, user_lon, store["lat"], store["lon"])
-    out = {
-        "consulta": {
-            "latitud_usuario":   user_lat,
-            "longitud_usuario":  user_lon,
-        },
-        "restaurante": {
-            "nombre":    store["name"],
-            "direccion": store["address"],
-            "latitud":   store["lat"],
-            "longitud":  store["lon"],
-            "distancia_km": round(dist, 3),
-            "rating":    store.get("rating"),
-            "uuid":      store["uuid"],
-        },
-        "menu": menu,
-    }
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(out, f, ensure_ascii=False, indent=2)
-    print(f"\n  💾  Resultado guardado en: {path}")
-
-
-# ─────────────────────────────────────────────
-#  MAIN
-# ─────────────────────────────────────────────
-
-def main():
-    p = argparse.ArgumentParser(
-        description="Scraper Uber Eats MX – McDonald's más cercano"
-    )
-    p.add_argument("--lat", type=float, default=19.4326,
-                   help="Latitud  (default: Zócalo CDMX)")
-    p.add_argument("--lon", type=float, default=-99.1332,
-                   help="Longitud (default: Zócalo CDMX)")
-    p.add_argument("--out", default="resultado.json",
-                   help="Archivo de salida (default: resultado.json)")
-    args = p.parse_args()
-
-    s = make_session()
-
-    # 1. Buscar
-    stores = search_mcdonalds(args.lat, args.lon, s)
-    if not stores:
-        print("❌  No se encontraron McDonald's. Intenta con otras coordenadas.")
-        return
-
-    print(f"✅  {len(stores)} sucursal(es) encontrada(s).")
-
-    # 2. Más cercana
-    store = closest(stores, args.lat, args.lon)
-
-    # 3. Menú
-    time.sleep(0.6)
-    menu = get_menu(store["uuid"], s)
-
-    # 4. Mostrar
-    print_results(store, menu, args.lat, args.lon)
-
-    # 5. Guardar
-    save_json(store, menu, args.lat, args.lon, args.out)
-
-
-if __name__ == "__main__":
-    main()
+    browser.close()

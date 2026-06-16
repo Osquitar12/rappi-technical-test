@@ -5,7 +5,7 @@ import requests
 TOKEN = "ft.gAAAAABqL-ofawQJOwat06F-R3GdcweiX3XN44HCfGTa9c0EfUpbGMDucYSZyCk4WUDL7XMqqyFUYBfkrOdv8D_pj3EpSJvA1jpbPg8vWLlE5ojtjyZfDfqoTOR6geBDuxV7A2GxpZ_0wtFMHkojDPHd4is40H0jnxUbSNAF1nFMA3pcMkerqvaYLYFlaRfS08oQvaj8v5BZUn32sZWUlFo_DYCaWjRh15CK_ijvI_XzfBXLVfC0AiS8Ha7AVqU1y36LWlSAtKnY2y1F7gQuHf1blMzCCy6W-LKVMSZ_lwCUw5sw9Vm1qnXdzgMJaQHycVjzvIU18ZKftrdLwm3yevl1fbUg_i6MRgxwkCOC6CcEdUM2Y3Szsw4_eCJqslShdyzDUnpcu_6FYUC2t5GURSATsVyOVa31Lg=="
 DEVICE_ID = "f763276f-bcfa-4bcc-b6d7-b3c29016e11fR"
 
-STORE_ID = "1923233421"
+STORE_ID = "1306705702"
 
 URL = f"https://services.mxgrability.rappi.com/api/web-gateway/web/restaurants-bus/store/id/{STORE_ID}/"
 
@@ -24,8 +24,8 @@ headers = {
 }
 
 payload = {
-    "lat": 19.43784,
-    "lng": -99.15035,
+    "lat": 19.4233149,
+    "lng": -99.1340942,
     "store_type": "restaurant",
     "is_prime": False,
     "prime_config": {
