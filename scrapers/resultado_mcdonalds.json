@@ -1,6 +1,6 @@
 {
   "restaurant": "McDonald's (Av del Taller)",
-  "eta": "DiDi Repartidor\n\n30 Min",
+  "eta": "DiDi Repartidor\n\n35 Min",
   "delivery_fee": "Tarifa de entrega\n\nMX$22",
   "products": [
     {
@@ -151,16 +151,37 @@
       "discount": ""
     },
     {
-      "name": "McTrío mediano Cuarto de Libra con Queso",
-      "description": "Hamburguesa con carne de res, sazonada con una pizca de sal y pimienta con queso americano, cebolla, pepinillos, cátsup y mostaza.",
-      "current_price": "MX$169.00",
+      "name": "Cajita Feliz Hamburguesa con Queso",
+      "description": "Pide tu Cajita Feliz de Hamburguesa con Queso; Incluye papas kids y Yoplait",
+      "current_price": "MX$149.00",
       "original_price": "",
       "discount": ""
     },
     {
-      "name": "McTrío mediano BBQ Crispy Onion Doble",
-      "description": "Hamburguesa con 2 Carnes Signature, salsa BBQ, cebolla caramelizada, queso cheddar blanco, csrispy onion, tocino y pan brioche.",
-      "current_price": "MX$229.00",
+      "name": "McTrío mediano McCrispy Spicy",
+      "description": "McTrio Mediano McCrispy Spicy",
+      "current_price": "MX$159.00",
+      "original_price": "",
+      "discount": ""
+    },
+    {
+      "name": "McTrío Hamb Dbl con Queso",
+      "description": "Hamburguesa con 2 carnes 100% de res, preparadas con cebolla, queso tipo americano, pepinillos, catsup y mostaza. Incluye papas medianas y refresco de 16Oz",
+      "current_price": "MX$105.00",
+      "original_price": "",
+      "discount": ""
+    },
+    {
+      "name": "Cajita Feliz McNuggets de pollo 4 pzas",
+      "description": "Pide tu Cajita Feliz de McNuggets 4 piezas; Incluye papas kids y Yoplait.",
+      "current_price": "MX$149.00",
+      "original_price": "",
+      "discount": ""
+    },
+    {
+      "name": "McTrío mediano Cuarto de Libra con Queso",
+      "description": "Hamburguesa con carne de res, sazonada con una pizca de sal y pimienta con queso americano, cebolla, pepinillos, cátsup y mostaza.",
+      "current_price": "MX$169.00",
       "original_price": "",
       "discount": ""
     },
@@ -172,37 +193,16 @@
       "discount": ""
     },
     {
-      "name": "McNuggets de Pollo 20 pzas",
-      "description": "20 Nuggets de pechuga de pollo con una capa de empanizado doradito.",
-      "current_price": "MX$199.00",
-      "original_price": "",
-      "discount": ""
-    },
-    {
-      "name": "McTrio mediano McNuggets 10 pzas",
-      "description": "McTrío de 10 McNuggets, tiernos y jugosos trocitos 100% de pechuga de pollo con una capa de empanizado doradito. Incluye papas y refresco de 21oz.",
+      "name": "McTrío mediano McNifica",
+      "description": "Hamburguesa con 1 carne de res, queso tipo americano, lechuga, cebolla, dos rebanadas de jitomate, mayonesa, cátsup, mostaza.",
       "current_price": "MX$169.00",
       "original_price": "",
       "discount": ""
     },
     {
-      "name": "Hamburguesa con Queso",
-      "description": "Hamburguesa con carne de res, queso tipo americano, pepinillos, cebolla, cátsup y mostaza",
-      "current_price": "MX$59.00",
-      "original_price": "",
-      "discount": ""
-    },
-    {
-      "name": "McTrío Plus",
-      "description": "McTrío Hamburguesa con Queso + McFlurry Oreo",
-      "current_price": "MX$139.00",
-      "original_price": "MX$150.00",
-      "discount": ""
-    },
-    {
-      "name": "McNuggets de Pollo 4 pzas",
-      "description": "4 Nuggets de pechuga de pollo con una capa de empanizado doradito.",
-      "current_price": "MX$59.00",
+      "name": "McNuggets de Pollo 10 pzas",
+      "description": "10 Nuggets de pechuga de pollo con una capa de empanizado doradito.",
+      "current_price": "MX$145.00",
       "original_price": "",
       "discount": ""
     },

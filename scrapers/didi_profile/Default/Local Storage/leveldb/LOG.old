@@ -1,3 +1,5 @@
-2026/06/16-01:35:44.105 1398 Reusing MANIFEST C:\Users\sindy\Downloads\competitive-intelligence\scrapers\didi_profile\Default\Local Storage\leveldb/MANIFEST-000001
-2026/06/16-01:35:44.116 1398 Recovering log #4
-2026/06/16-01:35:44.123 1398 Reusing old log C:\Users\sindy\Downloads\competitive-intelligence\scrapers\didi_profile\Default\Local Storage\leveldb/000004.log 
+2026/06/16-02:19:37.945 4808 Creating DB C:\Users\sindy\Downloads\competitive-intelligence\scrapers\didi_profile\Default\Local Storage\leveldb since it was missing.
+2026/06/16-02:19:38.099 4808 Reusing MANIFEST C:\Users\sindy\Downloads\competitive-intelligence\scrapers\didi_profile\Default\Local Storage\leveldb/MANIFEST-000001
+2026/06/16-02:20:13.942 4808 Level-0 table #5: started
+2026/06/16-02:20:13.966 4808 Level-0 table #5: 13809 bytes OK
+2026/06/16-02:20:13.992 4808 Delete type=0 #3

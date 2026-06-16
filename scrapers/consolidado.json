@@ -1,6 +1,6 @@
 {
   "brand": "McDonald's",
-  "generated_at": "2026-06-16T01:52:25.390754",
+  "generated_at": "2026-06-16T02:22:15.840979",
   "platforms": {
     "Rappi": {
       "restaurant": "Mc Donald's - Avenida del Taller ",
@@ -761,7 +761,7 @@
     },
     "DiDi": {
       "restaurant": "McDonald's (Av del Taller)",
-      "eta_min": 30,
+      "eta_min": 35,
       "delivery_fee_mxn": 22.0,
       "rating": null,
       "total_reviews": null,
@@ -958,18 +958,45 @@
         },
         {
           "platform": "DiDi",
-          "name": "McTrío mediano Cuarto de Libra con Queso",
-          "description": "Hamburguesa con carne de res, sazonada con una pizca de sal y pimienta con queso americano, cebolla, pepinillos, cátsup y mostaza.",
-          "current_price": 169.0,
+          "name": "Cajita Feliz Hamburguesa con Queso",
+          "description": "Pide tu Cajita Feliz de Hamburguesa con Queso; Incluye papas kids y Yoplait",
+          "current_price": 149.0,
           "original_price": null,
           "discount_pct": null,
           "category": ""
         },
         {
           "platform": "DiDi",
-          "name": "McTrío mediano BBQ Crispy Onion Doble",
-          "description": "Hamburguesa con 2 Carnes Signature, salsa BBQ, cebolla caramelizada, queso cheddar blanco, csrispy onion, tocino y pan brioche.",
-          "current_price": 229.0,
+          "name": "McTrío mediano McCrispy Spicy",
+          "description": "McTrio Mediano McCrispy Spicy",
+          "current_price": 159.0,
+          "original_price": null,
+          "discount_pct": null,
+          "category": ""
+        },
+        {
+          "platform": "DiDi",
+          "name": "McTrío Hamb Dbl con Queso",
+          "description": "Hamburguesa con 2 carnes 100% de res, preparadas con cebolla, queso tipo americano, pepinillos, catsup y mostaza. Incluye papas medianas y refresco de 16Oz",
+          "current_price": 105.0,
+          "original_price": null,
+          "discount_pct": null,
+          "category": ""
+        },
+        {
+          "platform": "DiDi",
+          "name": "Cajita Feliz McNuggets de pollo 4 pzas",
+          "description": "Pide tu Cajita Feliz de McNuggets 4 piezas; Incluye papas kids y Yoplait.",
+          "current_price": 149.0,
+          "original_price": null,
+          "discount_pct": null,
+          "category": ""
+        },
+        {
+          "platform": "DiDi",
+          "name": "McTrío mediano Cuarto de Libra con Queso",
+          "description": "Hamburguesa con carne de res, sazonada con una pizca de sal y pimienta con queso americano, cebolla, pepinillos, cátsup y mostaza.",
+          "current_price": 169.0,
           "original_price": null,
           "discount_pct": null,
           "category": ""
@@ -985,17 +1012,8 @@
         },
         {
           "platform": "DiDi",
-          "name": "McNuggets de Pollo 20 pzas",
-          "description": "20 Nuggets de pechuga de pollo con una capa de empanizado doradito.",
-          "current_price": 199.0,
-          "original_price": null,
-          "discount_pct": null,
-          "category": ""
-        },
-        {
-          "platform": "DiDi",
-          "name": "McTrio mediano McNuggets 10 pzas",
-          "description": "McTrío de 10 McNuggets, tiernos y jugosos trocitos 100% de pechuga de pollo con una capa de empanizado doradito. Incluye papas y refresco de 21oz.",
+          "name": "McTrío mediano McNifica",
+          "description": "Hamburguesa con 1 carne de res, queso tipo americano, lechuga, cebolla, dos rebanadas de jitomate, mayonesa, cátsup, mostaza.",
           "current_price": 169.0,
           "original_price": null,
           "discount_pct": null,
@@ -1003,27 +1021,9 @@
         },
         {
           "platform": "DiDi",
-          "name": "Hamburguesa con Queso",
-          "description": "Hamburguesa con carne de res, queso tipo americano, pepinillos, cebolla, cátsup y mostaza",
-          "current_price": 59.0,
-          "original_price": null,
-          "discount_pct": null,
-          "category": ""
-        },
-        {
-          "platform": "DiDi",
-          "name": "McTrío Plus",
-          "description": "McTrío Hamburguesa con Queso + McFlurry Oreo",
-          "current_price": 139.0,
-          "original_price": 150.0,
-          "discount_pct": null,
-          "category": ""
-        },
-        {
-          "platform": "DiDi",
-          "name": "McNuggets de Pollo 4 pzas",
-          "description": "4 Nuggets de pechuga de pollo con una capa de empanizado doradito.",
-          "current_price": 59.0,
+          "name": "McNuggets de Pollo 10 pzas",
+          "description": "10 Nuggets de pechuga de pollo con una capa de empanizado doradito.",
+          "current_price": 145.0,
           "original_price": null,
           "discount_pct": null,
           "category": ""
@@ -2165,12 +2165,12 @@
       ]
     },
     "Uber Eats": {
-      "restaurant": "McDonald's Palma",
-      "eta_min": 10,
+      "restaurant": "McDonald's Taller",
+      "eta_min": 28,
       "delivery_fee_mxn": 0.0,
       "rating": null,
       "total_reviews": null,
-      "total_products": 110,
+      "total_products": 109,
       "products": [
         {
           "platform": "Uber Eats",
@@ -2184,25 +2184,7 @@
         {
           "platform": "Uber Eats",
           "name": "#2 de tus favoritos",
-          "description": "Paquete Botanero",
-          "current_price": 125.0,
-          "original_price": 200.0,
-          "discount_pct": null,
-          "category": ""
-        },
-        {
-          "platform": "Uber Eats",
-          "name": "#3 de tus favoritos",
-          "description": "Cajita Feliz McNuggets de pollo 4 pzas",
-          "current_price": 149.0,
-          "original_price": null,
-          "discount_pct": null,
-          "category": ""
-        },
-        {
-          "platform": "Uber Eats",
-          "name": "McTrío mediano Cuarto de Libra con Queso",
-          "description": "",
+          "description": "McTrío mediano Cuarto de Libra con Queso",
           "current_price": 169.0,
           "original_price": null,
           "discount_pct": null,
@@ -2210,10 +2192,19 @@
         },
         {
           "platform": "Uber Eats",
-          "name": "McTrío mediano BBQ Crispy Onion Doble",
+          "name": "#3 de tus favoritos",
+          "description": "Exclusivo Uber",
+          "current_price": 159.0,
+          "original_price": 228.0,
+          "discount_pct": null,
+          "category": ""
+        },
+        {
+          "platform": "Uber Eats",
+          "name": "Paquete Botanero",
           "description": "",
-          "current_price": 229.0,
-          "original_price": null,
+          "current_price": 119.0,
+          "original_price": 200.0,
           "discount_pct": null,
           "category": ""
         },
@@ -2237,27 +2228,9 @@
         },
         {
           "platform": "Uber Eats",
-          "name": "Exclusivo Uber",
+          "name": "McTrío mediano BBQ Crispy Onion Doble",
           "description": "",
-          "current_price": 169.0,
-          "original_price": 228.0,
-          "discount_pct": null,
-          "category": ""
-        },
-        {
-          "platform": "Uber Eats",
-          "name": "McTrío mediano Big Mac",
-          "description": "",
-          "current_price": 159.0,
-          "original_price": null,
-          "discount_pct": null,
-          "category": ""
-        },
-        {
-          "platform": "Uber Eats",
-          "name": "Papas grandes",
-          "description": "",
-          "current_price": 75.0,
+          "current_price": 229.0,
           "original_price": null,
           "discount_pct": null,
           "category": ""
@@ -2266,23 +2239,14 @@
           "platform": "Uber Eats",
           "name": "McTrío Big Mac mediano+McFlurry Oreo",
           "description": "",
-          "current_price": 179.0,
+          "current_price": 169.0,
           "original_price": 218.0,
           "discount_pct": null,
           "category": ""
         },
         {
           "platform": "Uber Eats",
-          "name": "McTrio mediano McMéxico Pollo",
-          "description": "",
-          "current_price": 179.0,
-          "original_price": null,
-          "discount_pct": null,
-          "category": ""
-        },
-        {
-          "platform": "Uber Eats",
-          "name": "Cajita Feliz Hamburguesa Lechuga Tomate",
+          "name": "Cajita Feliz McNuggets de pollo 4 pzas",
           "description": "",
           "current_price": 149.0,
           "original_price": null,
@@ -2291,28 +2255,127 @@
         },
         {
           "platform": "Uber Eats",
-          "name": "McNuggets de Pollo 6 pzas",
+          "name": "McTrío mediano McNifica",
           "description": "",
-          "current_price": 99.0,
+          "current_price": 169.0,
           "original_price": null,
           "discount_pct": null,
           "category": ""
         },
         {
           "platform": "Uber Eats",
-          "name": "Medio Tiempo Familiar",
+          "name": "Paquete Consentidos",
           "description": "",
-          "current_price": 419.0,
+          "current_price": 269.0,
+          "original_price": 525.0,
+          "discount_pct": null,
+          "category": ""
+        },
+        {
+          "platform": "Uber Eats",
+          "name": "McTrío BBQ Crispy Onion mediano 1 carne",
+          "description": "",
+          "current_price": 199.0,
+          "original_price": null,
+          "discount_pct": null,
+          "category": ""
+        },
+        {
+          "platform": "Uber Eats",
+          "name": "McTrio mediano McNuggets 10 pzas",
+          "description": "",
+          "current_price": 169.0,
+          "original_price": null,
+          "discount_pct": null,
+          "category": ""
+        },
+        {
+          "platform": "Uber Eats",
+          "name": "McTrío mediano McPollo",
+          "description": "Hamburguesa con pechuga de pollo empanizada, lechuga y mayonesa. Incluye papas y refresco de 21oz.",
+          "current_price": 99.0,
+          "original_price": 115.0,
+          "discount_pct": null,
+          "category": ""
+        },
+        {
+          "platform": "Uber Eats",
+          "name": "Pay de Piña",
+          "description": "",
+          "current_price": 29.0,
+          "original_price": 40.0,
+          "discount_pct": null,
+          "category": ""
+        },
+        {
+          "platform": "Uber Eats",
+          "name": "McNuggets y Papas para Todos",
+          "description": "30 McNuggets + 2 papas medianas",
+          "current_price": 289.0,
+          "original_price": 494.0,
+          "discount_pct": null,
+          "category": ""
+        },
+        {
+          "platform": "Uber Eats",
+          "name": "Paquete Pits",
+          "description": "McFlurry Oreo + Papas Grandes",
+          "current_price": 89.0,
+          "original_price": 134.0,
+          "discount_pct": null,
+          "category": ""
+        },
+        {
+          "platform": "Uber Eats",
+          "name": "Cajita Feliz  McNuggets Plus",
+          "description": "Cajita Feliz 4 McNuggets + Hamburguesa con Queso + Papas grandes",
+          "current_price": 229.0,
+          "original_price": 273.0,
+          "discount_pct": null,
+          "category": ""
+        },
+        {
+          "platform": "Uber Eats",
+          "name": "Exclusivo Uber",
+          "description": "McTrío Mediano 10 McNuggets + Hamburguesa con Queso",
+          "current_price": 159.0,
+          "original_price": 228.0,
+          "discount_pct": null,
+          "category": ""
+        },
+        {
+          "platform": "Uber Eats",
+          "name": "Medio Tiempo Familiar",
+          "description": "2 McTríos Cuarto de Libra + 1 Cajita Feliz Nuggets 4",
+          "current_price": 399.0,
           "original_price": 487.0,
           "discount_pct": null,
           "category": ""
         },
         {
           "platform": "Uber Eats",
-          "name": "Tripleta Dorada",
-          "description": "3 McTríos Cuartos de Libra + 10 McNuggets",
-          "current_price": 575.0,
-          "original_price": 652.0,
+          "name": "Paquete para 4",
+          "description": "4 Hamburguesas a elegir + 4 Papas Medianas + 4 Refrescos Medianos",
+          "current_price": 489.0,
+          "original_price": 620.0,
+          "discount_pct": null,
+          "category": ""
+        },
+        {
+          "platform": "Uber Eats",
+          "name": "McTrío Big Mac mediano+McFlurry Oreo",
+          "description": "McTrío Mediano Big Mac + McFlurry Oreo",
+          "current_price": 169.0,
+          "original_price": 218.0,
+          "discount_pct": null,
+          "category": ""
+        },
+        {
+          "platform": "Uber Eats",
+          "name": "Para compartir con Bebidas",
+          "description": "4 Hamburguesas con Queso + 10 McNuggets + 2 Papas Grandes + 2 Refrescos Medianos",
+          "current_price": 359.0,
+          "original_price": 649.0,
           "discount_pct": null,
           "category": ""
         },
@@ -2327,73 +2390,28 @@
         },
         {
           "platform": "Uber Eats",
-          "name": "Paquete para 4",
-          "description": "4 Hamburguesas a elegir + 4 Papas Medianas + 4 Refrescos Medianos",
-          "current_price": 529.0,
-          "original_price": 620.0,
+          "name": "Paquete Consentidos",
+          "description": "2 Hamburguesas con Queso + 2 McPollo + 2 Papas Medianas + 6 McNuggets",
+          "current_price": 269.0,
+          "original_price": 525.0,
           "discount_pct": null,
           "category": ""
         },
         {
           "platform": "Uber Eats",
-          "name": "Para los Penales",
-          "description": "2 Hamburguesas con Queso + 20 McNuggets + 2 Papas grandes + 2 Refrescos medianos",
-          "current_price": 505.0,
-          "original_price": 585.0,
+          "name": "3x2 McFlurry Oreo",
+          "description": "3X2 McFlurry Oreo",
+          "current_price": 118.0,
+          "original_price": 177.0,
           "discount_pct": null,
           "category": ""
         },
         {
           "platform": "Uber Eats",
-          "name": "Uber Snack",
-          "description": "Hamburguesa con Queso + 4 McNuggets + Refresco Chico",
-          "current_price": 103.0,
-          "original_price": 167.0,
-          "discount_pct": null,
-          "category": ""
-        },
-        {
-          "platform": "Uber Eats",
-          "name": "Cajita Feliz  McNuggets Plus",
-          "description": "Cajita Feliz 4 McNuggets + Hamburguesa con Queso + Papas grandes",
-          "current_price": 235.0,
-          "original_price": 273.0,
-          "discount_pct": null,
-          "category": ""
-        },
-        {
-          "platform": "Uber Eats",
-          "name": "Paquete Me encanta",
-          "description": "2 Hamburguesas con Queso + 4 Mcnuggets + Refresco Mediano",
-          "current_price": 143.0,
-          "original_price": 236.0,
-          "discount_pct": null,
-          "category": ""
-        },
-        {
-          "platform": "Uber Eats",
-          "name": "Para compartir con Bebidas",
-          "description": "4 Hamburguesas con Queso + 10 McNuggets + 2 Papas Grandes + 2 Refrescos Medianos",
-          "current_price": 389.0,
-          "original_price": 649.0,
-          "discount_pct": null,
-          "category": ""
-        },
-        {
-          "platform": "Uber Eats",
-          "name": "No fue Penal",
-          "description": "20 McNuggets + 2 Papas grandes",
-          "current_price": 311.0,
-          "original_price": 349.0,
-          "discount_pct": null,
-          "category": ""
-        },
-        {
-          "platform": "Uber Eats",
-          "name": "Paquete Pits",
-          "description": "McFlurry Oreo + Papas Grandes",
-          "current_price": 89.0,
-          "original_price": 128.0,
+          "name": "Tu selección favorita",
+          "description": "6 Hamburguesas con Queso + 10 McNuggets + 3 Papas grandes",
+          "current_price": 489.0,
+          "original_price": 724.0,
           "discount_pct": null,
           "category": ""
         },
@@ -2402,42 +2420,6 @@
           "name": "Home Office con Big Mac",
           "description": "Big Mac + Papas Medianas",
           "current_price": 99.0,
-          "original_price": 200.0,
-          "discount_pct": null,
-          "category": ""
-        },
-        {
-          "platform": "Uber Eats",
-          "name": "Exclusivo Uber",
-          "description": "McTrío Mediano 10 McNuggets + Hamburguesa con Queso",
-          "current_price": 169.0,
-          "original_price": 228.0,
-          "discount_pct": null,
-          "category": ""
-        },
-        {
-          "platform": "Uber Eats",
-          "name": "Paquete Consentidos",
-          "description": "2 Hamburguesas con Queso + 2 McPollo + 2 Papas Medianas + 6 McNuggets",
-          "current_price": 291.0,
-          "original_price": 525.0,
-          "discount_pct": null,
-          "category": ""
-        },
-        {
-          "platform": "Uber Eats",
-          "name": "McNuggets y Papas para Todos",
-          "description": "30 McNuggets + 2 papas medianas",
-          "current_price": 311.0,
-          "original_price": 494.0,
-          "discount_pct": null,
-          "category": ""
-        },
-        {
-          "platform": "Uber Eats",
-          "name": "Paquete Botanero",
-          "description": "Disfruta tus partidos favoritos con 10 McNuggets + Papas grandes",
-          "current_price": 125.0,
           "original_price": 200.0,
           "discount_pct": null,
           "category": ""
@@ -2464,7 +2446,7 @@
           "platform": "Uber Eats",
           "name": "Tu selección favorita",
           "description": "6 Hamburguesas con Queso + 10 McNuggets + 3 Papas grandes",
-          "current_price": 517.0,
+          "current_price": 489.0,
           "original_price": 724.0,
           "discount_pct": null,
           "category": ""
@@ -2473,7 +2455,7 @@
           "platform": "Uber Eats",
           "name": "Para los Penales",
           "description": "2 Hamburguesas con Queso + 20 McNuggets + 2 Papas grandes + 2 Refrescos medianos",
-          "current_price": 505.0,
+          "current_price": 485.0,
           "original_price": 585.0,
           "discount_pct": null,
           "category": ""
@@ -2482,7 +2464,7 @@
           "platform": "Uber Eats",
           "name": "No fue Penal",
           "description": "20 McNuggets + 2 Papas grandes",
-          "current_price": 311.0,
+          "current_price": 299.0,
           "original_price": 349.0,
           "discount_pct": null,
           "category": ""
@@ -2491,7 +2473,7 @@
           "platform": "Uber Eats",
           "name": "Tripleta Dorada",
           "description": "3 McTríos Cuartos de Libra + 10 McNuggets",
-          "current_price": 575.0,
+          "current_price": 535.0,
           "original_price": 652.0,
           "discount_pct": null,
           "category": ""
@@ -2500,7 +2482,7 @@
           "platform": "Uber Eats",
           "name": "Medio Tiempo Familiar",
           "description": "2 McTríos Cuarto de Libra + 1 Cajita Feliz Nuggets 4",
-          "current_price": 419.0,
+          "current_price": 399.0,
           "original_price": 487.0,
           "discount_pct": null,
           "category": ""
@@ -2563,7 +2545,7 @@
           "platform": "Uber Eats",
           "name": "Cajita Feliz  McNuggets Plus",
           "description": "Cajita Feliz 4 McNuggets + Hamburguesa con Queso + Papas grandes",
-          "current_price": 235.0,
+          "current_price": 229.0,
           "original_price": 273.0,
           "discount_pct": null,
           "category": ""
@@ -2600,7 +2582,7 @@
           "name": "Paquete Pits",
           "description": "McFlurry Oreo + Papas Grandes",
           "current_price": 89.0,
-          "original_price": 128.0,
+          "original_price": 134.0,
           "discount_pct": null,
           "category": ""
         },
@@ -2608,7 +2590,7 @@
           "platform": "Uber Eats",
           "name": "Uber Snack",
           "description": "Hamburguesa con Queso + 4 McNuggets + Refresco Chico",
-          "current_price": 103.0,
+          "current_price": 99.0,
           "original_price": 167.0,
           "discount_pct": null,
           "category": ""
@@ -2635,7 +2617,7 @@
           "platform": "Uber Eats",
           "name": "Paquete Me encanta",
           "description": "2 Hamburguesas con Queso + 4 Mcnuggets + Refresco Mediano",
-          "current_price": 143.0,
+          "current_price": 139.0,
           "original_price": 236.0,
           "discount_pct": null,
           "category": ""
@@ -2644,7 +2626,7 @@
           "platform": "Uber Eats",
           "name": "Paquete Botanero",
           "description": "Disfruta tus partidos favoritos con 10 McNuggets + Papas grandes",
-          "current_price": 125.0,
+          "current_price": 119.0,
           "original_price": 200.0,
           "discount_pct": null,
           "category": ""
@@ -2653,7 +2635,7 @@
           "platform": "Uber Eats",
           "name": "Exclusivo Uber",
           "description": "McTrío Mediano 10 McNuggets + Hamburguesa con Queso",
-          "current_price": 169.0,
+          "current_price": 159.0,
           "original_price": 228.0,
           "discount_pct": null,
           "category": ""
@@ -2662,7 +2644,7 @@
           "platform": "Uber Eats",
           "name": "McTrío Big Mac mediano+McFlurry Oreo",
           "description": "McTrío Mediano Big Mac + McFlurry Oreo",
-          "current_price": 179.0,
+          "current_price": 169.0,
           "original_price": 218.0,
           "discount_pct": null,
           "category": ""
@@ -2671,7 +2653,7 @@
           "platform": "Uber Eats",
           "name": "Paquete Consentidos",
           "description": "2 Hamburguesas con Queso + 2 McPollo + 2 Papas Medianas + 6 McNuggets",
-          "current_price": 291.0,
+          "current_price": 269.0,
           "original_price": 525.0,
           "discount_pct": null,
           "category": ""
@@ -2680,7 +2662,7 @@
           "platform": "Uber Eats",
           "name": "McNuggets y Papas para Todos",
           "description": "30 McNuggets + 2 papas medianas",
-          "current_price": 311.0,
+          "current_price": 289.0,
           "original_price": 494.0,
           "discount_pct": null,
           "category": ""
@@ -2689,7 +2671,7 @@
           "platform": "Uber Eats",
           "name": "Para compartir con Bebidas",
           "description": "4 Hamburguesas con Queso + 10 McNuggets + 2 Papas Grandes + 2 Refrescos Medianos",
-          "current_price": 389.0,
+          "current_price": 359.0,
           "original_price": 649.0,
           "discount_pct": null,
           "category": ""
@@ -2698,7 +2680,7 @@
           "platform": "Uber Eats",
           "name": "Paquete para 4",
           "description": "4 Hamburguesas a elegir + 4 Papas Medianas + 4 Refrescos Medianos",
-          "current_price": 529.0,
+          "current_price": 489.0,
           "original_price": 620.0,
           "discount_pct": null,
           "category": ""
@@ -3029,15 +3011,6 @@
         },
         {
           "platform": "Uber Eats",
-          "name": "Malteada chocolate",
-          "description": "Malteada con base de helado de leche con jarabe de chocolate.",
-          "current_price": 65.0,
-          "original_price": null,
-          "discount_pct": null,
-          "category": ""
-        },
-        {
-          "platform": "Uber Eats",
           "name": "Sundae chocolate",
           "description": "",
           "current_price": 45.0,
@@ -3068,6 +3041,15 @@
           "name": "Sundae fresa",
           "description": "",
           "current_price": 45.0,
+          "original_price": null,
+          "discount_pct": null,
+          "category": ""
+        },
+        {
+          "platform": "Uber Eats",
+          "name": "Malteada chocolate",
+          "description": "Malteada con base de helado de leche con jarabe de chocolate.",
+          "current_price": 65.0,
           "original_price": null,
           "discount_pct": null,
           "category": ""
@@ -3112,6 +3094,15 @@
           "platform": "Uber Eats",
           "name": "Café Americano grande",
           "description": "Disfruta de un café recien preparado.",
+          "current_price": 39.0,
+          "original_price": null,
+          "discount_pct": null,
+          "category": ""
+        },
+        {
+          "platform": "Uber Eats",
+          "name": "Agua Ciel 600 ml",
+          "description": "Refréscate con nuestra presentación de 600ml",
           "current_price": 39.0,
           "original_price": null,
           "discount_pct": null,

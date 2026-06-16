@@ -9,3 +9,6 @@ for script in scripts:
     print(f"✅ {script} terminado")
 
 print("\n🎉 Todos los scripts terminados")
+print("\n📊 Generando reporte...")
+subprocess.run([sys.executable, "reporte.py"])
+print("✅ Reporte generado")
