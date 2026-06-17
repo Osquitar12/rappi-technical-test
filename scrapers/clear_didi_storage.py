@@ -15,5 +15,5 @@ with sync_playwright() as p:
 
     print("🧹 Storage limpiado (puede que aún quede cookie)")
 
-    input("ENTER para cerrar...")
+    
     context.close()
